@@ -1,6 +1,6 @@
 "use client";
 
-import ThemeToggle from "./theme-toggle";
+import ThemeToggle from "@/components/atoms/theme-toggle";
 
 export default function Header() {
   return (

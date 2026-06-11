@@ -1,5 +1,5 @@
-import Header from "@/components/header";
-import HomeClient from "@/components/homeclient";
+import Header from "@/components/organisms/header";
+import HomeClient from "@/components/organisms/homeclient";
 
 export default function Page() {
   return (

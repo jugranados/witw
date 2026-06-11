@@ -8,14 +8,14 @@ type Props = {
 
 export default function SearchBar({ value, onChange }: Props) {
   return (
-    <div className="relative">
+    <div className="relative w-full sm:w-auto">
       <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted pointer-events-none" />
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Search for a country..."
         className={`
-          w-full sm:w-[420px] pl-12 pr-4 h-12 rounded-md
+          w-full sm:w-105 pl-12 pr-4 h-12 rounded-md min-w-0
           bg-surface
           shadow-card
           border border-transparent

@@ -18,7 +18,7 @@ export default function RegionSelect({ value, onChange, options }: Props) {
       <button
         onClick={() => setOpen((o) => !o)}
         className={`
-          flex items-center justify-between w-56 h-12 px-4 rounded-md
+          flex items-center justify-between w-full sm:w-56 h-12 px-4 rounded-md
           bg-surface
           shadow-card
           border border-transparent

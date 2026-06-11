@@ -1,5 +1,5 @@
 import { Country, RestCountriesResponse, transformRestCountriesData } from "@/types/country";
-import CountryDetail from "@/components/country-detail";
+import CountryDetail from "@/components/organisms/country-detail";
 
 type Props = {
   params: Promise<{

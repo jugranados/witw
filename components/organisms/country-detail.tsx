@@ -4,6 +4,8 @@ import { Country } from "@/types/country";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import FlagImage from "@/components/atoms/flag-image";
+import InfoItem from "@/components/atoms/info-item";
 
 type Props = {
   country: Country;
@@ -33,13 +35,11 @@ export default function CountryDetail({ country, borderCountries }: Props) {
     return domains.join(", ");
   };
 
-  const flagSrc = country.flags?.svg || country.flags?.png || "";
-
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       <button
         onClick={() => router.back()}
-        className="inline-flex items-center gap-2 px-6 py-2 rounded-md bg-surface text-foreground shadow-md hover:shadow-lg transition-shadow"
+        className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 text-sm rounded-md bg-surface text-foreground shadow-md hover:shadow-lg transition-shadow"
       >
         <ArrowLeftIcon className="h-5 w-5" />
         <span>Back</span>
@@ -47,42 +47,40 @@ export default function CountryDetail({ country, borderCountries }: Props) {
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div className="flex items-center">
-          {flagSrc && (
-            <img
-              src={flagSrc}
-              alt={`${country.name} flag`}
-              className="w-full rounded-lg shadow-lg"
-            />
-          )}
+          <FlagImage
+            flags={country.flags}
+            name={country.name}
+            className="w-full rounded-lg shadow-lg"
+          />
         </div>
 
-        <div className="space-y-8">
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-foreground">
+        <div className="space-y-6 sm:space-y-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground">
             {country.name}
           </h1>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <div className="space-y-3">
-              <DetailItem label="Native Name" value={country.nativeName} />
-              <DetailItem
+              <InfoItem label="Native Name" value={country.nativeName} />
+              <InfoItem
                 label="Population"
                 value={formatPopulation(country.population)}
               />
-              <DetailItem label="Region" value={country.region} />
-              <DetailItem label="Sub Region" value={country.subregion} />
-              <DetailItem label="Capital" value={country.capital} />
+              <InfoItem label="Region" value={country.region} />
+              <InfoItem label="Sub Region" value={country.subregion} />
+              <InfoItem label="Capital" value={country.capital} />
             </div>
 
             <div className="space-y-3">
-              <DetailItem
+              <InfoItem
                 label="Top Level Domain"
                 value={getTopLevelDomain(country.topLevelDomain)}
               />
-              <DetailItem
+              <InfoItem
                 label="Currencies"
                 value={getCurrencies(country.currencies)}
               />
-              <DetailItem
+              <InfoItem
                 label="Languages"
                 value={getLanguages(country.languages)}
               />
@@ -113,16 +111,4 @@ export default function CountryDetail({ country, borderCountries }: Props) {
   );
 }
 
-type DetailItemProps = {
-  label: string;
-  value: string | undefined;
-};
 
-function DetailItem({ label, value }: DetailItemProps) {
-  return (
-    <div className="text-sm">
-      <span className="font-semibold text-foreground">{label}: </span>
-      <span className="text-muted">{value || "—"}</span>
-    </div>
-  );
-}
